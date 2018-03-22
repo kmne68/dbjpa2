@@ -21,10 +21,20 @@ public class AppMain {
 		}
 		
 		Member m = members.get(0);
-		System.out.println("Changing stgtus of " + m.getMemid());
+		System.out.println("Changing status of " + m.getMemid());
 		m.setStatus("T");
 		dao.update(m);
 		System.out.println("Change completed.");
+		
+		Member m2 = new Member();
+		m2.setMemid("G312");		
+		m2.setFirstname("Frederic");
+		m2.setLastname("Bastiat");
+		m2.setMiddlename("Claude");
+//		m2.setMemdt(1998-01-01);
+		m2.setPassword(1234);
+		m2.setStatus("A");
+		
 	}
 
 }
