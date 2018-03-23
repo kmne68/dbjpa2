@@ -41,6 +41,10 @@ public class MemberDaoImpl implements MemberDao {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction trans = entityManager.getTransaction();
 		
+		trans.begin();
+		entityManager.persist(m);
+		trans.commit();
+		entityManager.close();
 		
 	}
 
