@@ -32,7 +32,7 @@ public class ClubJPAConfig {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/club294?useSSL=false");
 		dataSource.setUsername("root");
-		dataSource.setPassword("@tbftgoGg1sbmLam!0i");
+		dataSource.setPassword("");
 		
 		return dataSource;
 	}
