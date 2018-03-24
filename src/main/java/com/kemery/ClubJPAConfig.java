@@ -10,9 +10,13 @@ import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -28,7 +32,7 @@ public class ClubJPAConfig {
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/club294?useSSL=false");
 		dataSource.setUsername("root");
-		dataSource.setPassword("");
+		dataSource.setPassword("@tbftgoGg1sbmLam!0i");
 		
 		return dataSource;
 	}
@@ -37,13 +41,18 @@ public class ClubJPAConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		
-		factoryBean.setPersistenceProviderClass(HibernatePersistence.class);
 		factoryBean.setDataSource(dataSource());
+		
+	//	factoryBean.setPersistenceProviderClass(HibernatePersistence.class);
+		
 		factoryBean.setPackagesToScan("com.kemery");
-		factoryBean.setJpaPropertyMap(jpaProperties());
+	//	factoryBean.setJpaPropertyMap(jpaProperties());
+		
+		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		
 		return factoryBean;
 	}
+	
 	
 	
 	private Map<String, ?> jpaProperties() {
@@ -89,5 +98,21 @@ public class ClubJPAConfig {
 		return bean;
 	}
 	
+	
+	@Bean
+	public static PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslationPostProcessor() {
+		PersistenceExceptionTranslationPostProcessor bean = new PersistenceExceptionTranslationPostProcessor();
+		
+		return bean;
+	}
+	
+	
+	@Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+		jpaVendorAdapter.setGenerateDdl(true);
+		jpaVendorAdapter.setDatabase(Database.H2);
+		return jpaVendorAdapter;
+	}
 	
 }

@@ -1,5 +1,6 @@
 package com.kemery;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -15,7 +16,12 @@ public class PurchaseServiceImpl implements PurchaseService {
 	
 	@Override
 	public void save(Purchase purchase) {
-		purchaseDao.save(purchase);
+		
+		try {
+			purchaseDao.save(purchase);
+		} catch (DataAccessException ex) {
+			System.out.println("Data access error: " + ex.getStackTrace());
+		}
 	}
 	
 	
