@@ -1,5 +1,7 @@
 package com.kemery;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -37,18 +39,31 @@ public class AppMain {
 		
 		dao.add(m2);
 */		
-		// Set up Purchases
+		// Set up first Purchase
 		PurchaseService purchaseService = applicationContext.getBean(PurchaseService.class);
 		
-		Purchase purchase = new Purchase();
-		purchase.seteMemid("Z005");
-//		purchase.setPurchdt("2016-08-22");
-		purchase.setTranstype("C");
-		purchase.setTranscd("NS");
-		purchase.setAmt(5.00);
+		Date dt = new Date(2018-03-20);
 		
-		purchaseService.save(purchase);
+		Purchase firstPurchase = new Purchase();
+		firstPurchase.seteMemid("G305");
+		firstPurchase.setPurchdt(dt);
+		firstPurchase.setTranstype("C");
+		firstPurchase.setTranscd("22");
+		firstPurchase.setAmt(37.00);
 		
+		purchaseService.save(firstPurchase);	
+				
+		// Set up second Purchase		
+		Date secondDate = new Date(2016-03-20);
+		
+		Purchase secondPurchase = new Purchase();
+		secondPurchase.seteMemid("Z005");
+		secondPurchase.setPurchdt(dt);
+		secondPurchase.setTranstype("C");
+		secondPurchase.setTranscd("NS");
+		secondPurchase.setAmt(37.00);
+		
+		purchaseService.save(secondPurchase);
 		
 	}
 
